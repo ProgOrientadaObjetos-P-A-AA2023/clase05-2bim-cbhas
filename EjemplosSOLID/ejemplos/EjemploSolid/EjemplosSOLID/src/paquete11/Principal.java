@@ -1,22 +1,60 @@
-/*
- * 
- * D - Dependency inversion principle (Principio de inversión de dependencias)
- */
 package paquete11;
 
+import java.util.ArrayList;
+import static paquete11.LecturaArchivo.leerArchivo;
+
 public class Principal {
+
     public static void main(String[] args) {
-        
-        /*
-        Usar el txt llamado usuarios.txt; por cada línea del archivo
-        crer un API en función de su servicio; además el API ahora genera
-        información estática (no cambia el API), se debe buscar la forma que el 
-        API sea dinámico totalmente (usar alguna librería propia de JAVA, tipo 
-        Random); la url final debe contener el tipo de servicio y el user
-        Por cada objeto de tipo GeneradoPelicula presentar la información 
-        a través de un toString
-        */
-        
-        
+
+        ArrayList<String> lista = leerArchivo();
+        ArrayList<GeneradorPelicula> generadores = new ArrayList();
+
+        for (int i = 0; i < lista.size(); i++) {
+            String[] partes = lista.get(i).split(";");
+            String user = partes[1];
+            String ak = user;
+            String url = "http://api.movie?api=";
+
+            GeneradorPelicula gp = new GeneradorPelicula();
+            gp.establecerUser(ak);
+
+            if ("Netflix".equals(partes[2])) {
+                APINetflix netflix = new APINetflix();
+                netflix.establecerApiKey(ak);
+                gp.establecerLlave(netflix);
+                gp.establecerUrl(url);
+
+            } else if ("Disney".equals(partes[2])) {
+                APIDisney disney = new APIDisney();
+                disney.establecerApiKey(ak);
+                gp.establecerLlave(disney);
+                gp.establecerUrl(url);
+
+            } else if ("Amazon".equals(partes[2])) {
+                APIAmazon amazon = new APIAmazon();
+                amazon.establecerApiKey(ak);
+                gp.establecerLlave(amazon);
+                gp.establecerUrl(url);
+
+            } else if ("Starplus".equals(partes[2])) {
+                APIStarPlus starplus = new APIStarPlus();
+                starplus.establecerApiKey(ak);
+                gp.establecerLlave(starplus);
+                gp.establecerUrl(url);
+            }
+
+            generadores.add(gp);
+        }
+
+        for (int i = 0; i < generadores.size(); i++) {
+            System.out.printf("%s", generadores.get(i));
+        }
+
+        System.out.println("=======================================================");
+
     }
+    
 }
+
+// @cbhas & @OliverRobert33

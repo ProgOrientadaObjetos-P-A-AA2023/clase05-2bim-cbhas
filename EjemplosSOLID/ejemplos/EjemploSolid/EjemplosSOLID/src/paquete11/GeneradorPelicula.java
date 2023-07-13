@@ -1,30 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete11;
 
 public class GeneradorPelicula {
-    
+
     private APIMovie llave;
     private String url;
-    // agregar un user (tipo String)
-    
-    public void establecerLlave(APIMovie l){ // APINetflix, APIAmazon
-        llave = l;
-    }
-    
-    public void establecerUrl(String l){
-        url = String.format("%s%s", l, obtenerLlave().obtenerApiKey());
-    }
-    
-    public APIMovie obtenerLlave(){
+    private String user;
+
+    public APIMovie obtenerLlave() {
         return llave;
     }
-    
-    public String obtenerUrl(){
+
+    public void establecerLlave(APIMovie l) {
+        llave = l;
+    }
+
+    public String obtenerUser() {
+        return user;
+    }
+
+    public void establecerUser(String u) {
+        user = u;
+    }
+
+    public String obtenerUrl() {
         return url;
+    }
+
+    public void establecerUrl(String l) {
+        url = String.format("%s%s", l, obtenerLlave().obtenerApiKey());
+    }
+
+    @Override
+    public String toString() {
+        String cadena;
+        cadena = String.format("=======================================================\n"
+                + "  User: %s\t\n"
+                + "  Llave %s\t\n"
+                + "  URL:  %s\n",
+                user,
+                llave.obtenerApiKey(),
+                url);
+
+        return cadena;
     }
     
 }
+
+// @cbhas & @OliverRobert33
