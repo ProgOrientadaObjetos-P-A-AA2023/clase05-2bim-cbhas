@@ -1,13 +1,14 @@
 package paquete11;
 
-public class APIStarPlus implements APIMovie {
+public class APIStartplus implements APIMovie {
 
     private String apiKey;
-    private int numRandom = (int) (Math.random() * 1232341);
 
     @Override
     public void establecerApiKey(String ak) {
-        apiKey = ak + "STARPLUS" + numRandom;
+        int numRandom = (int) (Math.random() * 13434);
+
+        apiKey = ak + numRandom;
     }
 
     @Override

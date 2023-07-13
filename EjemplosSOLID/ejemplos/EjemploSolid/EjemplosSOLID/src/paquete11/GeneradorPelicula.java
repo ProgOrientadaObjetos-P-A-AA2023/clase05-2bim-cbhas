@@ -4,30 +4,32 @@ public class GeneradorPelicula {
 
     private APIMovie llave;
     private String url;
-    private String user;
+    private String usuario;
+
+    public void establecerLlave(APIMovie ll) {
+        llave = ll;
+    }
+
+    public void establecerUrl(String l) {
+        url = String.format("%s%s",
+                l,
+                obtenerLlave().obtenerApiKey());
+    }
+
+    public void establecerUsuario(String u) {
+        usuario = u;
+    }
 
     public APIMovie obtenerLlave() {
         return llave;
-    }
-
-    public void establecerLlave(APIMovie l) {
-        llave = l;
-    }
-
-    public String obtenerUser() {
-        return user;
-    }
-
-    public void establecerUser(String u) {
-        user = u;
     }
 
     public String obtenerUrl() {
         return url;
     }
 
-    public void establecerUrl(String l) {
-        url = String.format("%s%s", l, obtenerLlave().obtenerApiKey());
+    public String obtenerUsuario() {
+        return usuario;
     }
 
     @Override
@@ -37,13 +39,13 @@ public class GeneradorPelicula {
                 + "  User: %s\t\n"
                 + "  Llave %s\t\n"
                 + "  URL:  %s\n",
-                user,
+                usuario,
                 llave.obtenerApiKey(),
                 url);
 
         return cadena;
     }
-    
+
 }
 
 // @cbhas & @OliverRobert33

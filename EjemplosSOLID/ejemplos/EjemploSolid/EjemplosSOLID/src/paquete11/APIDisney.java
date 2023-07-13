@@ -3,11 +3,12 @@ package paquete11;
 public class APIDisney implements APIMovie {
 
     private String apiKey;
-    private int numRandom = (int) (Math.random() * 1232341);
 
     @Override
-    public void establecerApiKey(String usuario) {
-        apiKey = usuario + "DISNEY" + numRandom;
+    public void establecerApiKey(String ak) {
+        int numRandom = (int) (Math.random() * 13434);
+
+        apiKey = ak + numRandom;
     }
 
     @Override

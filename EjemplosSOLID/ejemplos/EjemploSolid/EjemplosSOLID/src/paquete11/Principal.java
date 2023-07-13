@@ -1,60 +1,63 @@
 package paquete11;
 
 import java.util.ArrayList;
-import static paquete11.LecturaArchivo.leerArchivo;
 
 public class Principal {
 
     public static void main(String[] args) {
 
-        ArrayList<String> lista = leerArchivo();
-        ArrayList<GeneradorPelicula> generadores = new ArrayList();
+        String nombreArchivo = "usuarios.txt";
+        String url = "http://api.movie?api=";
 
-        for (int i = 0; i < lista.size(); i++) {
-            String[] partes = lista.get(i).split(";");
-            String user = partes[1];
-            String ak = user;
-            String url = "http://api.movie?api=";
+        ArchivoLectura archivo = new ArchivoLectura(nombreArchivo);
+        archivo.cerrarArchivo();
+
+        ArrayList<GeneradorPelicula> lista = new ArrayList<>();
+        ArrayList<String[]> datos = archivo.obtenerDatos();
+
+        for (int i = 0; i < datos.size(); i++) {
+            String[] dato = datos.get(i);
 
             GeneradorPelicula gp = new GeneradorPelicula();
-            gp.establecerUser(ak);
 
-            if ("Netflix".equals(partes[2])) {
-                APINetflix netflix = new APINetflix();
-                netflix.establecerApiKey(ak);
-                gp.establecerLlave(netflix);
-                gp.establecerUrl(url);
+            gp.establecerUsuario(dato[1]);
+            String apikey = dato[1] + dato[2].toUpperCase();
 
-            } else if ("Disney".equals(partes[2])) {
-                APIDisney disney = new APIDisney();
-                disney.establecerApiKey(ak);
-                gp.establecerLlave(disney);
-                gp.establecerUrl(url);
+            String valorBuscado = dato[2];
 
-            } else if ("Amazon".equals(partes[2])) {
-                APIAmazon amazon = new APIAmazon();
-                amazon.establecerApiKey(ak);
-                gp.establecerLlave(amazon);
-                gp.establecerUrl(url);
+            if (valorBuscado.equals("Netflix")) {
+                APINetflix apiN = new APINetflix();
+                apiN.establecerApiKey(apikey);
+                gp.establecerLlave(apiN);
 
-            } else if ("Starplus".equals(partes[2])) {
-                APIStarPlus starplus = new APIStarPlus();
-                starplus.establecerApiKey(ak);
-                gp.establecerLlave(starplus);
-                gp.establecerUrl(url);
+            } else if (dato[2].equals("Disney")) {
+                APIDisney apiD = new APIDisney();
+                apiD.establecerApiKey(apikey);
+                gp.establecerLlave(apiD);
+
+            } else if (dato[2].equals("Amazon")) {
+                APIAmazonMovie apiA = new APIAmazonMovie();
+                apiA.establecerApiKey(apikey);
+                gp.establecerLlave(apiA);
+
+            } else if (dato[2].equals("Startplus")) {
+                APIStartplus apiS = new APIStartplus();
+                apiS.establecerApiKey(apikey);
+                gp.establecerLlave(apiS);
             }
-
-            generadores.add(gp);
+            gp.establecerUrl(url);
+            lista.add(gp);
         }
 
-        for (int i = 0; i < generadores.size(); i++) {
-            System.out.printf("%s", generadores.get(i));
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.printf("%s",
+                    lista.get(i));
         }
 
         System.out.println("=======================================================");
-
     }
-    
+
 }
+
 
 // @cbhas & @OliverRobert33

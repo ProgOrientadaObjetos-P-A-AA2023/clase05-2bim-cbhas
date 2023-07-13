@@ -1,13 +1,14 @@
 package paquete11;
 
-public class APIAmazon implements APIMovie {
+public class APIAmazonMovie implements APIMovie {
 
     private String apiKey;
-    private int numRandom = (int) (Math.random() * 1232341);
 
     @Override
     public void establecerApiKey(String ak) {
-        apiKey = ak + "AMAZON" + numRandom;
+        int numRandom = (int) (Math.random() * 13434);
+
+        apiKey = ak + numRandom;
     }
 
     @Override
