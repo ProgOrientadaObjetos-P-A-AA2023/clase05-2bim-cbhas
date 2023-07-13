@@ -19,7 +19,6 @@ public class ArchivoLectura {
         if (f.exists()) {
             try {
                 Scanner entrada = new Scanner(f);
-
                 while (entrada.hasNextLine()) {
                     String linea = entrada.nextLine();
                     String[] partes = linea.split(";");
@@ -29,7 +28,9 @@ public class ArchivoLectura {
             } catch (FileNotFoundException e) {
                 System.err.println("Error al leer del archivo: " + e);
             }
+
         }
+
     }
 
     public void establecerNombreArchivo(String n) {
@@ -41,8 +42,8 @@ public class ArchivoLectura {
                 obtenerNombreArchivo());
     }
 
-    public void establecerDatos(ArrayList<String[]> d) {
-        datos = d;
+    public void establecerDatos(ArrayList<String[]> datos) {
+        this.datos = datos;
     }
 
     public String obtenerNombreArchivo() {
@@ -65,5 +66,3 @@ public class ArchivoLectura {
     }
 
 }
-
-// @cbhas & @OliverRobert33

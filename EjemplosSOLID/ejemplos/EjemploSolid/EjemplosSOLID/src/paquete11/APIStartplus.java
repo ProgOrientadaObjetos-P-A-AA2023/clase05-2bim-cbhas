@@ -16,5 +16,3 @@ public class APIStartplus implements APIMovie {
     }
 
 }
-
-// @cbhas & @OliverRobert33

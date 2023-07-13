@@ -16,8 +16,8 @@ public class GeneradorPelicula {
                 obtenerLlave().obtenerApiKey());
     }
 
-    public void establecerUsuario(String u) {
-        usuario = u;
+    public void establecerUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public APIMovie obtenerLlave() {
@@ -34,18 +34,15 @@ public class GeneradorPelicula {
 
     @Override
     public String toString() {
-        String cadena;
-        cadena = String.format("=======================================================\n"
-                + "  User: %s\t\n"
-                + "  Llave %s\t\n"
-                + "  URL:  %s\n",
-                usuario,
-                llave.obtenerApiKey(),
-                url);
 
+        String cadena = String.format(""
+                + "  Usuario: %s\n"
+                + "  Llave: %s\n"
+                + "  Url: %s\n",
+                obtenerUsuario(),
+                llave.obtenerApiKey(),
+                obtenerUrl());
         return cadena;
     }
 
 }
-
-// @cbhas & @OliverRobert33

@@ -45,19 +45,18 @@ public class Principal {
                 apiS.establecerApiKey(apikey);
                 gp.establecerLlave(apiS);
             }
+
             gp.establecerUrl(url);
             lista.add(gp);
         }
 
         for (int i = 0; i < lista.size(); i++) {
-            System.out.printf("%s",
+            System.out.printf("  %d)\n%s",
+                    (i + 1),
                     lista.get(i));
+            System.out.print("======================================================\n");
         }
 
-        System.out.println("=======================================================");
     }
 
 }
-
-
-// @cbhas & @OliverRobert33
