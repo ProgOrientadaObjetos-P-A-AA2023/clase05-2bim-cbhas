@@ -18,7 +18,6 @@ public class ArchivoLectura {
         File f = new File(rutaArchivo);
         if (f.exists()) {
             try {
-
                 Scanner entrada = new Scanner(f);
 
                 while (entrada.hasNextLine()) {
@@ -39,11 +38,11 @@ public class ArchivoLectura {
 
     public void establecerRutaArchivo() {
         rutaArchivo = String.format("datos/%s.txt",
-                obtenerNombreArchivo());;
+                obtenerNombreArchivo());
     }
 
-    public void establecerDatos(ArrayList<String[]> datos) {
-        this.datos = datos;
+    public void establecerDatos(ArrayList<String[]> d) {
+        datos = d;
     }
 
     public String obtenerNombreArchivo() {

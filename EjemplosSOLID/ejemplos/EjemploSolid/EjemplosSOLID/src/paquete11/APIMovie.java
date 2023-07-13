@@ -6,7 +6,6 @@ public interface APIMovie {
 
     public String obtenerApiKey();
 
-
 }
 
 // @cbhas & @OliverRobert33
